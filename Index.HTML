@@ -1,0 +1,68 @@
+from tkinter import *
+from PIL import Image, ImageTk
+import time
+
+ventana = Tk()
+ventana.title("Para ti")
+ventana.geometry("600x700")
+ventana.configure(bg="purple")
+
+mensajes = [
+    "Hola amorcito",
+    "Quiero que sepas algo...",
+    "Le agradezco a Dios por ponerte en mi vida",
+    "Eres una mujer muy inteligente",
+    "Muy divertida",
+    "Una persona muy especial",
+    "Pero sobre todo, eres única y me haces muy feliz",
+    "Aunque me caiga mal esa fase lutea",
+    "Amo todo de tí",
+    "Eres de lo más bonito que tengo",
+
+    "Te hice comidita jeje",
+]
+
+texto = Label(
+    ventana,
+    text="",
+    font=("Arial", 16),
+    bg="white",
+    justify="center",
+    wraplength=500
+)
+
+texto.pack(pady=30)
+
+def mostrar_mensajes():
+    texto_completo = ""
+
+    for mensaje in mensajes:
+        texto_completo += mensaje + "\n"
+
+        texto.config(text=texto_completo)
+        ventana.update()
+
+        time.sleep(2)
+
+    imagen = Image.open(r"C:/Users/Pipee/Carta cami/Pipe_cami.jpeg")
+
+    imagen = imagen.resize((350, 350))
+
+    foto = ImageTk.PhotoImage(imagen)
+
+    label_imagen = Label(ventana, image=foto, bg="white")
+    label_imagen.image = foto
+    label_imagen.pack(pady=20)
+
+    final = Label(
+        ventana,
+        text="Te amo muchísimo",
+        font=("Arial", 18, "bold"),
+        bg="white"
+    )
+
+    final.pack(pady=20)
+
+ventana.after(1000, mostrar_mensajes)
+
+ventana.mainloop()
